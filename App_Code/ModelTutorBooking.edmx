@@ -1,0 +1,661 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ModelTutorBooking.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ModelTutorBookingStoreContainer">
+          <EntitySet Name="tblAdmin" EntityType="ModelTutorBooking.Store.tblAdmin" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblBooking" EntityType="ModelTutorBooking.Store.tblBooking" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCourse" EntityType="ModelTutorBooking.Store.tblCourse" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblRating" EntityType="ModelTutorBooking.Store.tblRating" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblSchedule" EntityType="ModelTutorBooking.Store.tblSchedule" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblStudent" EntityType="ModelTutorBooking.Store.tblStudent" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblTutor" EntityType="ModelTutorBooking.Store.tblTutor" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblTutorCourse" EntityType="ModelTutorBooking.Store.tblTutorCourse" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_tblBooking_tblCourse" Association="ModelTutorBooking.Store.FK_tblBooking_tblCourse">
+            <End Role="tblCourse" EntitySet="tblCourse" />
+            <End Role="tblBooking" EntitySet="tblBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblStudent" Association="ModelTutorBooking.Store.FK_tblBooking_tblStudent">
+            <End Role="tblStudent" EntitySet="tblStudent" />
+            <End Role="tblBooking" EntitySet="tblBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblTutor" Association="ModelTutorBooking.Store.FK_tblBooking_tblTutor">
+            <End Role="tblTutor" EntitySet="tblTutor" />
+            <End Role="tblBooking" EntitySet="tblBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRating_tblStudent" Association="ModelTutorBooking.Store.FK_tblRating_tblStudent">
+            <End Role="tblStudent" EntitySet="tblStudent" />
+            <End Role="tblRating" EntitySet="tblRating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRating_tblTutor" Association="ModelTutorBooking.Store.FK_tblRating_tblTutor">
+            <End Role="tblTutor" EntitySet="tblTutor" />
+            <End Role="tblRating" EntitySet="tblRating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSchedule_tblTutor" Association="ModelTutorBooking.Store.FK_tblSchedule_tblTutor">
+            <End Role="tblTutor" EntitySet="tblTutor" />
+            <End Role="tblSchedule" EntitySet="tblSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTutorCourse_tblCourse" Association="ModelTutorBooking.Store.FK_tblTutorCourse_tblCourse">
+            <End Role="tblCourse" EntitySet="tblCourse" />
+            <End Role="tblTutorCourse" EntitySet="tblTutorCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTutorCourse_tblTutor" Association="ModelTutorBooking.Store.FK_tblTutorCourse_tblTutor">
+            <End Role="tblTutor" EntitySet="tblTutor" />
+            <End Role="tblTutorCourse" EntitySet="tblTutorCourse" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblAdmin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblBooking">
+          <Key>
+            <PropertyRef Name="BookingId" />
+          </Key>
+          <Property Name="BookingId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TutorId" Type="int" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="DateOfBooking" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="TimeOfBooking" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CourseId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCourse">
+          <Key>
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Name="CourseId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CourseCode" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblRating">
+          <Key>
+            <PropertyRef Name="RatingId" />
+          </Key>
+          <Property Name="RatingId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TutorId" Type="int" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="Rate" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSchedule">
+          <Key>
+            <PropertyRef Name="ScheduleId" />
+          </Key>
+          <Property Name="ScheduleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TutorId" Type="int" Nullable="false" />
+          <Property Name="Mo" Type="varchar" MaxLength="50" />
+          <Property Name="Tu" Type="varchar" MaxLength="50" />
+          <Property Name="We" Type="varchar" MaxLength="50" />
+          <Property Name="Th" Type="varchar" MaxLength="50" />
+          <Property Name="Fr" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblStudent">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblTutor">
+          <Key>
+            <PropertyRef Name="TutorId" />
+          </Key>
+          <Property Name="TutorId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblTutorCourse">
+          <Key>
+            <PropertyRef Name="TutorCourseId" />
+          </Key>
+          <Property Name="TutorCourseId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TutorId" Type="int" Nullable="false" />
+          <Property Name="CourseId" Type="int" Nullable="false" />
+          <Property Name="Grade" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <Association Name="FK_tblBooking_tblCourse">
+          <End Role="tblCourse" Type="ModelTutorBooking.Store.tblCourse" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblBooking" Type="ModelTutorBooking.Store.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCourse">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblStudent">
+          <End Role="tblStudent" Type="ModelTutorBooking.Store.tblStudent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblBooking" Type="ModelTutorBooking.Store.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStudent">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblTutor">
+          <End Role="tblTutor" Type="ModelTutorBooking.Store.tblTutor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblBooking" Type="ModelTutorBooking.Store.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTutor">
+              <PropertyRef Name="TutorId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="TutorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRating_tblStudent">
+          <End Role="tblStudent" Type="ModelTutorBooking.Store.tblStudent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblRating" Type="ModelTutorBooking.Store.tblRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStudent">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="tblRating">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRating_tblTutor">
+          <End Role="tblTutor" Type="ModelTutorBooking.Store.tblTutor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblRating" Type="ModelTutorBooking.Store.tblRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTutor">
+              <PropertyRef Name="TutorId" />
+            </Principal>
+            <Dependent Role="tblRating">
+              <PropertyRef Name="TutorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSchedule_tblTutor">
+          <End Role="tblTutor" Type="ModelTutorBooking.Store.tblTutor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblSchedule" Type="ModelTutorBooking.Store.tblSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTutor">
+              <PropertyRef Name="TutorId" />
+            </Principal>
+            <Dependent Role="tblSchedule">
+              <PropertyRef Name="TutorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTutorCourse_tblCourse">
+          <End Role="tblCourse" Type="ModelTutorBooking.Store.tblCourse" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblTutorCourse" Type="ModelTutorBooking.Store.tblTutorCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCourse">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="tblTutorCourse">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTutorCourse_tblTutor">
+          <End Role="tblTutor" Type="ModelTutorBooking.Store.tblTutor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblTutorCourse" Type="ModelTutorBooking.Store.tblTutorCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTutor">
+              <PropertyRef Name="TutorId" />
+            </Principal>
+            <Dependent Role="tblTutorCourse">
+              <PropertyRef Name="TutorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ModelTutorBooking" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="ModelTutor" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCourses" EntityType="ModelTutorBooking.tblCourse" />
+          <EntitySet Name="tblSchedules" EntityType="ModelTutorBooking.tblSchedule" />
+          <EntitySet Name="tblStudents" EntityType="ModelTutorBooking.tblStudent" />
+          <EntitySet Name="tblTutors" EntityType="ModelTutorBooking.tblTutor" />
+          <EntitySet Name="tblTutorCourses" EntityType="ModelTutorBooking.tblTutorCourse" />
+          <AssociationSet Name="FK_tblTutorCourse_tblCourse" Association="ModelTutorBooking.FK_tblTutorCourse_tblCourse">
+            <End Role="tblCourse" EntitySet="tblCourses" />
+            <End Role="tblTutorCourse" EntitySet="tblTutorCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSchedule_tblTutor" Association="ModelTutorBooking.FK_tblSchedule_tblTutor">
+            <End Role="tblTutor" EntitySet="tblTutors" />
+            <End Role="tblSchedule" EntitySet="tblSchedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTutorCourse_tblTutor" Association="ModelTutorBooking.FK_tblTutorCourse_tblTutor">
+            <End Role="tblTutor" EntitySet="tblTutors" />
+            <End Role="tblTutorCourse" EntitySet="tblTutorCourses" />
+          </AssociationSet>
+          <EntitySet Name="tblAdmins" EntityType="ModelTutorBooking.tblAdmin" />
+          <EntitySet Name="tblBookings" EntityType="ModelTutorBooking.tblBooking" />
+          <AssociationSet Name="FK_tblBooking_tblCourse" Association="ModelTutorBooking.FK_tblBooking_tblCourse">
+            <End Role="tblCourse" EntitySet="tblCourses" />
+            <End Role="tblBooking" EntitySet="tblBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblStudent" Association="ModelTutorBooking.FK_tblBooking_tblStudent">
+            <End Role="tblStudent" EntitySet="tblStudents" />
+            <End Role="tblBooking" EntitySet="tblBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblTutor" Association="ModelTutorBooking.FK_tblBooking_tblTutor">
+            <End Role="tblTutor" EntitySet="tblTutors" />
+            <End Role="tblBooking" EntitySet="tblBookings" />
+          </AssociationSet>
+          <EntitySet Name="tblRatings" EntityType="ModelTutorBooking.tblRating" />
+          <AssociationSet Name="FK_tblRating_tblStudent" Association="ModelTutorBooking.FK_tblRating_tblStudent">
+            <End Role="tblStudent" EntitySet="tblStudents" />
+            <End Role="tblRating" EntitySet="tblRatings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRating_tblTutor" Association="ModelTutorBooking.FK_tblRating_tblTutor">
+            <End Role="tblTutor" EntitySet="tblTutors" />
+            <End Role="tblRating" EntitySet="tblRatings" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblCourse">
+          <Key>
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Type="Int32" Name="CourseId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CourseCode" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblTutorCourses" Relationship="ModelTutorBooking.FK_tblTutorCourse_tblCourse" FromRole="tblCourse" ToRole="tblTutorCourse" />
+          <NavigationProperty Name="tblBookings" Relationship="ModelTutorBooking.FK_tblBooking_tblCourse" FromRole="tblCourse" ToRole="tblBooking" />
+        </EntityType>
+        <EntityType Name="tblSchedule">
+          <Key>
+            <PropertyRef Name="ScheduleId" />
+          </Key>
+          <Property Type="Int32" Name="ScheduleId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="TutorId" Nullable="false" />
+          <Property Type="String" Name="Mo" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Tu" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="We" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Th" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Fr" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblTutor" Relationship="ModelTutorBooking.FK_tblSchedule_tblTutor" FromRole="tblSchedule" ToRole="tblTutor" />
+        </EntityType>
+        <EntityType Name="tblStudent">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Type="Int32" Name="StudentId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Active" />
+          <NavigationProperty Name="tblBookings" Relationship="ModelTutorBooking.FK_tblBooking_tblStudent" FromRole="tblStudent" ToRole="tblBooking" />
+          <NavigationProperty Name="tblRatings" Relationship="ModelTutorBooking.FK_tblRating_tblStudent" FromRole="tblStudent" ToRole="tblRating" />
+        </EntityType>
+        <EntityType Name="tblTutor">
+          <Key>
+            <PropertyRef Name="TutorId" />
+          </Key>
+          <Property Type="Int32" Name="TutorId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Active" />
+          <NavigationProperty Name="tblSchedules" Relationship="ModelTutorBooking.FK_tblSchedule_tblTutor" FromRole="tblTutor" ToRole="tblSchedule" />
+          <NavigationProperty Name="tblTutorCourses" Relationship="ModelTutorBooking.FK_tblTutorCourse_tblTutor" FromRole="tblTutor" ToRole="tblTutorCourse" />
+          <NavigationProperty Name="tblBookings" Relationship="ModelTutorBooking.FK_tblBooking_tblTutor" FromRole="tblTutor" ToRole="tblBooking" />
+          <NavigationProperty Name="tblRatings" Relationship="ModelTutorBooking.FK_tblRating_tblTutor" FromRole="tblTutor" ToRole="tblRating" />
+        </EntityType>
+        <EntityType Name="tblTutorCourse">
+          <Key>
+            <PropertyRef Name="TutorCourseId" />
+          </Key>
+          <Property Type="Int32" Name="TutorCourseId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="TutorId" Nullable="false" />
+          <Property Type="Int32" Name="CourseId" Nullable="false" />
+          <Property Type="String" Name="Grade" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Active" />
+          <NavigationProperty Name="tblCourse" Relationship="ModelTutorBooking.FK_tblTutorCourse_tblCourse" FromRole="tblTutorCourse" ToRole="tblCourse" />
+          <NavigationProperty Name="tblTutor" Relationship="ModelTutorBooking.FK_tblTutorCourse_tblTutor" FromRole="tblTutorCourse" ToRole="tblTutor" />
+        </EntityType>
+        <Association Name="FK_tblTutorCourse_tblCourse">
+          <End Type="ModelTutorBooking.tblCourse" Role="tblCourse" Multiplicity="1" />
+          <End Type="ModelTutorBooking.tblTutorCourse" Role="tblTutorCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCourse">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="tblTutorCourse">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSchedule_tblTutor">
+          <End Type="ModelTutorBooking.tblTutor" Role="tblTutor" Multiplicity="1" />
+          <End Type="ModelTutorBooking.tblSchedule" Role="tblSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTutor">
+              <PropertyRef Name="TutorId" />
+            </Principal>
+            <Dependent Role="tblSchedule">
+              <PropertyRef Name="TutorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTutorCourse_tblTutor">
+          <End Type="ModelTutorBooking.tblTutor" Role="tblTutor" Multiplicity="1" />
+          <End Type="ModelTutorBooking.tblTutorCourse" Role="tblTutorCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTutor">
+              <PropertyRef Name="TutorId" />
+            </Principal>
+            <Dependent Role="tblTutorCourse">
+              <PropertyRef Name="TutorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblAdmin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Type="Int32" Name="AdminId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblBooking">
+          <Key>
+            <PropertyRef Name="BookingId" />
+          </Key>
+          <Property Type="Int32" Name="BookingId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="TutorId" Nullable="false" />
+          <Property Type="Int32" Name="StudentId" Nullable="false" />
+          <Property Type="DateTime" Name="DateOfBooking" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TimeOfBooking" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CourseId" Nullable="false" />
+          <NavigationProperty Name="tblCourse" Relationship="ModelTutorBooking.FK_tblBooking_tblCourse" FromRole="tblBooking" ToRole="tblCourse" />
+          <NavigationProperty Name="tblStudent" Relationship="ModelTutorBooking.FK_tblBooking_tblStudent" FromRole="tblBooking" ToRole="tblStudent" />
+          <NavigationProperty Name="tblTutor" Relationship="ModelTutorBooking.FK_tblBooking_tblTutor" FromRole="tblBooking" ToRole="tblTutor" />
+        </EntityType>
+        <Association Name="FK_tblBooking_tblCourse">
+          <End Type="ModelTutorBooking.tblCourse" Role="tblCourse" Multiplicity="1" />
+          <End Type="ModelTutorBooking.tblBooking" Role="tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCourse">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblStudent">
+          <End Type="ModelTutorBooking.tblStudent" Role="tblStudent" Multiplicity="1" />
+          <End Type="ModelTutorBooking.tblBooking" Role="tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStudent">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblTutor">
+          <End Type="ModelTutorBooking.tblTutor" Role="tblTutor" Multiplicity="1" />
+          <End Type="ModelTutorBooking.tblBooking" Role="tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTutor">
+              <PropertyRef Name="TutorId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="TutorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblRating">
+          <Key>
+            <PropertyRef Name="RatingId" />
+          </Key>
+          <Property Type="Int32" Name="RatingId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="TutorId" Nullable="false" />
+          <Property Type="Int32" Name="StudentId" Nullable="false" />
+          <Property Type="Int32" Name="Rate" Nullable="false" />
+          <NavigationProperty Name="tblStudent" Relationship="ModelTutorBooking.FK_tblRating_tblStudent" FromRole="tblRating" ToRole="tblStudent" />
+          <NavigationProperty Name="tblTutor" Relationship="ModelTutorBooking.FK_tblRating_tblTutor" FromRole="tblRating" ToRole="tblTutor" />
+        </EntityType>
+        <Association Name="FK_tblRating_tblStudent">
+          <End Type="ModelTutorBooking.tblStudent" Role="tblStudent" Multiplicity="1" />
+          <End Type="ModelTutorBooking.tblRating" Role="tblRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStudent">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="tblRating">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRating_tblTutor">
+          <End Type="ModelTutorBooking.tblTutor" Role="tblTutor" Multiplicity="1" />
+          <End Type="ModelTutorBooking.tblRating" Role="tblRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTutor">
+              <PropertyRef Name="TutorId" />
+            </Principal>
+            <Dependent Role="tblRating">
+              <PropertyRef Name="TutorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelTutorBookingStoreContainer" CdmEntityContainer="ModelTutor">
+          <EntitySetMapping Name="tblCourses">
+            <EntityTypeMapping TypeName="ModelTutorBooking.tblCourse">
+              <MappingFragment StoreEntitySet="tblCourse">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSchedules">
+            <EntityTypeMapping TypeName="ModelTutorBooking.tblSchedule">
+              <MappingFragment StoreEntitySet="tblSchedule">
+                <ScalarProperty Name="Fr" ColumnName="Fr" />
+                <ScalarProperty Name="Th" ColumnName="Th" />
+                <ScalarProperty Name="We" ColumnName="We" />
+                <ScalarProperty Name="Tu" ColumnName="Tu" />
+                <ScalarProperty Name="Mo" ColumnName="Mo" />
+                <ScalarProperty Name="TutorId" ColumnName="TutorId" />
+                <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStudents">
+            <EntityTypeMapping TypeName="ModelTutorBooking.tblStudent">
+              <MappingFragment StoreEntitySet="tblStudent">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTutors">
+            <EntityTypeMapping TypeName="ModelTutorBooking.tblTutor">
+              <MappingFragment StoreEntitySet="tblTutor">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TutorId" ColumnName="TutorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTutorCourses">
+            <EntityTypeMapping TypeName="ModelTutorBooking.tblTutorCourse">
+              <MappingFragment StoreEntitySet="tblTutorCourse">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="TutorId" ColumnName="TutorId" />
+                <ScalarProperty Name="TutorCourseId" ColumnName="TutorCourseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAdmins">
+            <EntityTypeMapping TypeName="ModelTutorBooking.tblAdmin">
+              <MappingFragment StoreEntitySet="tblAdmin">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBookings">
+            <EntityTypeMapping TypeName="ModelTutorBooking.tblBooking">
+              <MappingFragment StoreEntitySet="tblBooking">
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="TimeOfBooking" ColumnName="TimeOfBooking" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DateOfBooking" ColumnName="DateOfBooking" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="TutorId" ColumnName="TutorId" />
+                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRatings">
+            <EntityTypeMapping TypeName="ModelTutorBooking.tblRating">
+              <MappingFragment StoreEntitySet="tblRating">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="TutorId" ColumnName="TutorId" />
+                <ScalarProperty Name="RatingId" ColumnName="RatingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="ModelTutorBooking">
+        <EntityTypeShape EntityType="ModelTutorBooking.tblCourse" Width="1.5" PointX="3.75" PointY="0.75" Height="1.7879850260416665" />
+        <EntityTypeShape EntityType="ModelTutorBooking.tblSchedule" Width="1.5" PointX="3" PointY="3.375" Height="2.5571907552083322" />
+        <EntityTypeShape EntityType="ModelTutorBooking.tblStudent" Width="1.5" PointX="0.75" PointY="7.5" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="ModelTutorBooking.tblTutor" Width="1.5" PointX="0.75" PointY="3.375" Height="2.5571907552083322" />
+        <EntityTypeShape EntityType="ModelTutorBooking.tblTutorCourse" Width="1.5" PointX="6" PointY="3.5" Height="2.3648893229166679" />
+        <AssociationConnector Association="ModelTutorBooking.FK_tblTutorCourse_tblCourse" >
+          <ConnectorPoint PointX="5.25" PointY="1.7401432291666668" />
+          <ConnectorPoint PointX="6.75" PointY="1.7401432291666668" />
+          <ConnectorPoint PointX="6.75" PointY="3.5" />
+        </AssociationConnector>
+        <AssociationConnector Association="ModelTutorBooking.FK_tblSchedule_tblTutor" >
+          <ConnectorPoint PointX="2.25" PointY="4.6535953776041659" />
+          <ConnectorPoint PointX="3" PointY="4.6535953776041659" />
+        </AssociationConnector>
+        <AssociationConnector Association="ModelTutorBooking.FK_tblTutorCourse_tblTutor" >
+          <ConnectorPoint PointX="2.25" PointY="6.1557421875" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="6.1557421874999987" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="6.1557421875" />
+          <ConnectorPoint PointX="6.75" PointY="6.1557421875" />
+          <ConnectorPoint PointX="6.75" PointY="5.8648893229166674" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="ModelTutorBooking.tblAdmin" Width="1.5" PointX="0.75" PointY="0.75" Height="1.7879850260416665" />
+        <EntityTypeShape EntityType="ModelTutorBooking.tblBooking" Width="1.5" PointX="6" PointY="6.875" Height="2.9417936197916674" />
+        <AssociationConnector Association="ModelTutorBooking.FK_tblBooking_tblCourse" >
+          <ConnectorPoint PointX="4.90625" PointY="2.7302864583333335" />
+          <ConnectorPoint PointX="4.90625" PointY="9.4009407552083335" />
+          <ConnectorPoint PointX="6" PointY="9.4009407552083335" />
+        </AssociationConnector>
+        <AssociationConnector Association="ModelTutorBooking.FK_tblBooking_tblStudent" >
+          <ConnectorPoint PointX="2.25" PointY="9.1305143229166674" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="9.1305143229166674" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="9.1305143229166674" />
+          <ConnectorPoint PointX="6" PointY="9.1305143229166674" />
+        </AssociationConnector>
+        <AssociationConnector Association="ModelTutorBooking.FK_tblBooking_tblTutor" >
+          <ConnectorPoint PointX="2.25" PointY="5.4046687825520827" />
+          <ConnectorPoint PointX="2.75" PointY="5.4046687825520827" />
+          <ConnectorPoint PointX="2.75" PointY="6.1148893229166674" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="6.1148893229166665" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="6.1148893229166674" />
+          <ConnectorPoint PointX="6.3750005000000005" PointY="6.1148893229166674" />
+          <ConnectorPoint PointX="6.3750005000000005" PointY="6.875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="ModelTutorBooking.tblRating" Width="1.5" PointX="3" PointY="6.75" Height="2.1725878906249996" />
+        <AssociationConnector Association="ModelTutorBooking.FK_tblRating_tblStudent" >
+          <ConnectorPoint PointX="2.25" PointY="8.2112939453125" />
+          <ConnectorPoint PointX="3" PointY="8.2112939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="ModelTutorBooking.FK_tblRating_tblTutor" >
+          <ConnectorPoint PointX="2.2499999999999991" PointY="6.3167936197916665" />
+          <ConnectorPoint PointX="2.625" PointY="6.6917936197916674" />
+          <ConnectorPoint PointX="2.625" PointY="6.375" />
+          <ConnectorPoint PointX="3" PointY="6.75" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

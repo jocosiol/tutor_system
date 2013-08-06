@@ -1,0 +1,64 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="UserMaster.master.cs" Inherits="UserMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="App_Themes/NormalLoader.css" rel="stylesheet" type="text/css" />
+    <link href="App_Themes/MainStyle.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+     <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+    <div style="width: 100%; float: left">
+        <div style="float: left; width: 100%; background-color: green; padding-top: 10px;
+            padding-bottom: 15px;">
+            <div style="width: 980px; margin: auto auto auto auto;">
+                <div style="float: left;">
+                    <span style="font-weight: bold; font-size: 40px; color: White;"><a href="Default.aspx"
+                        style="color: white; text-decoration: none;">TutorBooking.ca</a> </span>
+                </div>
+                <div style="float: right;">
+               
+                </div>
+            </div>
+        </div>
+        <div style="float: left; width: 100%; background-color: orange; margin-bottom: 15px;">
+            <div style="width: 980px; margin: auto auto auto auto;">
+            <div style="float:left;">
+                <ul>
+                    <li><a href="Default.aspx" class="mylink">Home</a></li>
+                    <li>
+                        <asp:LinkButton ID="linkStudentLogin" runat="server" CssClass="mylink" OnClick="linkStudentLogin_Click">Student</asp:LinkButton>
+                    </li>
+                    <li>
+                        <asp:LinkButton ID="linkTutorLogin" runat="server" CssClass="mylink" OnClick="linkTutorLogin_Click">Tutor</asp:LinkButton>
+                    </li>
+                    <li><a href="Contactus.aspx" class="mylink">Contact us</a></li>
+                </ul>
+                </div>
+            
+            <div style="float:right; padding-top:3px; vertical-align:middle">
+            <span style="font-weight:bold; font-size:18px; color:White;"><asp:Label ID="lblWelcome" runat="server" Text=""></asp:Label></span>
+            </div>
+            </div>
+        </div>
+        <div style="margin: auto; width: 960px;">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div style="width: 100%; float: left; background-color: green; border-top: 10px solid orange;
+            padding-bottom: 15px; margin-top: 15px; color: White; padding-top: 10px;">
+            <div style="width: 980px; margin: auto auto auto auto;">
+               
+               
+                &copy Copyright Centennial College Tutor Booking System
+            </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

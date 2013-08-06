@@ -1,0 +1,58 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="AdminMaster.master.cs"
+    Inherits="Admin_AdminMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="../App_Themes/MainStyle.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style>
+        a
+        {
+            color: red;
+            
+            text-decoration: underline;
+        }
+        a:hover
+        {
+            color: black;
+            text-decoration: none;
+        }
+        
+        span
+        {
+            color: darkcyan;
+            font-size: 22px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div style="background-color: Black; padding: 20px 10px; margin-bottom: 20px; color: White;
+        font-weight: bold; font-size: 30px; float: left; width: 100%;">
+        <div style="margin: auto; width: 960px;">
+            <div style="float: left;">
+                <a href="Default.aspx" style="color: White; font-size: 30px; font-weight: bold;">TutorBooking.ca
+                    : Admin Panel</a>
+            </div>
+            <div style="float: right;">
+                <asp:LinkButton ID="linkLogout" runat="server" Text="Logout" OnClick="linkLogout_Click"
+                    Style="color: White; font-size: 30px; font-weight: bold;"></asp:LinkButton>
+            </div>
+        </div>
+    </div>
+    <div style="margin: auto; width: 960px;">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    <div style="background-color: Black; padding: 5px 10px; margin-top: 10px; color: White;
+        font-weight: bold; font-size: 13px; width: 100%; float: left;">
+         <div style="margin: auto; width: 960px;">
+       Copyright &copy;2013 by TutorBooking.com
+        </div>
+    </div>
+    </form>
+</body>
+</html>
