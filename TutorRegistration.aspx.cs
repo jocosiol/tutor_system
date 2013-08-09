@@ -113,6 +113,20 @@ public partial class Default2 : System.Web.UI.Page
                     try
                     {
                         obj.SaveChanges();
+                        
+                        Email m = new Email();
+
+                        try
+                        {
+                            string body = "Hello " + txtName.Text.Trim() + ",\n" + "You are registered for Tutoring.";
+
+                            m.sendEmail(email, body);
+                        }
+                        catch (Exception)
+                        {
+                            
+                        }
+                        
                         Response.Redirect("~/Sucess.aspx?m=Your account has been sucessfuly registered. Login to book tutor.");
                     }
                     catch (Exception)
